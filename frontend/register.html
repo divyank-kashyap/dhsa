@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Delhi Himachal Student Association</title>
+        <script>
+            async function signup() {
+                const fullName = document.getElementById('full-name').value;
+                const phoneNumber = document.getElementById('phone-number').value;
+                const collegeName = document.getElementById('college-name').value;
+                const courseName = document.getElementById('course-name').value;
+                const year = document.getElementById('year').value;
+                const nativePlace = document.getElementById('native-place').value;
+                const email = document.getElementById('email-id').value; 
+
+                // console.log(fullName);
+                
+                const response = await fetch("http://localhost:3000/signup", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({fullName, phoneNumber, collegeName, courseName, year, nativePlace, email})
+                })
+                
+                console.log("fullName in html:" + fullName)
+                const data = await response.json();
+                console.log(data.message);
+            }
+
+            function register() {
+                signup();
+            }
+        </script>
+    </head>
+    <body>
+        <div class="box transparent-box">
+            <h2>Registration Form</h2>
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" required><br><br>
+    
+                <label for="phone-number">Phone Number:</label>
+                <input type="tel" id="phone-number" name="phone-number" required><br><br>
+    
+                <label for="college-name">College Name:</label>
+                <input type="text" id="college-name" name="college-name" required><br><br>
+    
+                <label for="course-name">Course Name:</label>
+                <input type="text" id="course-name" name="course-name" required><br><br>
+    
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year" required><br><br>
+    
+                <label for="native-place">Native Place:</label>
+                <input type="text" id="native-place" name="native-place" required><br><br>
+    
+                <label for="email-id">Email ID:</label>
+                <input type="email" id="email-id" name="email-id" required><br><br>
+    
+                <button id="register" onclick="register()">Register</button>
+        </div> 
+    </body>
+</html>
